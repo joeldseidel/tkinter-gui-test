@@ -1,3 +1,7 @@
+#Calculate the wind chill from a specified temperature and wind speed (using a GUI)
+
+#Joel Seidel
+
 import tkinter
 
 class WindChillConverterGUI:
@@ -13,7 +17,7 @@ class WindChillConverterGUI:
 		self.output_display_row = tkinter.Frame()
 		
 		#Initialize title widget
-		self.title_label = tkinter.Label(self.title_row, text='Windchill Calculator', fg='red', bg='yellow', )
+		self.title_label = tkinter.Label(self.title_row, text='Windchill Calculator', fg='red', bg='yellow', font=("Verdana", 16))
 		#Pack title label row
 		self.title_label.pack(side='left')
 		
@@ -52,10 +56,16 @@ class WindChillConverterGUI:
 		#Tkinter main loop call
 		tkinter.mainloop()
 		
+	#On click event handler for calculate button click
 	def calculateWindChill(self):
+		#Get temperature input string and convert to float
 		temp = float(self.temp_input_textbox.get())
+		#Get wind speed input string and convert to float
 		windspeed = float(self.windspeed_input_textbox.get())
+		#Calculate the wind chill from provided wind chill and temperature
 		windchill = 35.74 + 0.6215 * temp - 35.75 * windspeed**0.16 + 0.4275 * temp * windspeed**0.16
+		#Set the calculated wind chill
 		self.value.set("The windchill temperature is: {0:.1f}".format(windchill))
-			
+
+#Initialize the gui and start the application
 windchillCalc = WindChillConverterGUI()
